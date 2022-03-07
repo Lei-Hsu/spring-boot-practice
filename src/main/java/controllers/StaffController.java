@@ -1,11 +1,13 @@
 package controllers;
 
-import Dao.entity.StaffModel;
 import dto.request.StaffRequest;
 import dto.response.StaffResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import services.StaffService;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class StaffController {
@@ -13,10 +15,10 @@ public class StaffController {
     @Autowired
     StaffService staffService;
 
-    @GetMapping("/find")
-    public String findStaff(){
-        return "findStaff";
-    }
+    @GetMapping("/findAll")
+    public List<Map<String, Object>> findStaff(){
+        return staffService.findAllStaff();
+    };
 
     @PostMapping("/addStaff")
     public StaffResponse createStaff(@RequestBody StaffRequest staffRequest){

@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class StaffService {
 
@@ -15,6 +18,15 @@ public class StaffService {
 
     @Autowired
     StaffModel staffModel;
+
+    private List<Map<String, Object>> staffList;
+
+    public List<Map<String, Object>> findAllStaff(){
+        staffList = staffRepository.findAllStaff();
+
+        return staffList;
+    }
+
 
     public void addStaff(@RequestBody StaffRequest staffRequest){
 
