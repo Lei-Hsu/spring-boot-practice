@@ -1,30 +1,27 @@
 package controllers;
 
 import Dao.entity.StaffModel;
+import dto.request.StaffRequest;
+import dto.response.StaffResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import services.StaffService;
 
 @RestController
 public class StaffController {
 
     @Autowired
-    StaffModel staffModel;
-
-    @Autowired
     StaffService staffService;
 
-    @RequestMapping("/addStaff")
-    public String hello(){
-        staffModel = new StaffModel();
-        staffModel.setEmail("email@gmail.com");
-        staffModel.setId(1);
-        staffModel.setPhone("092323232");
-        staffModel.setPosition("manager");
+    @GetMapping("/find")
+    public String findStaff(){
+        return "findStaff";
+    }
 
-        staffService.addStaff(staffModel);
+    @PostMapping("/addStaff")
+    public StaffResponse createStaff(@RequestBody StaffRequest staffRequest){
+        staffService.addStaff(staffRequest);
 
-        return "Add New Staff Success";
+        return null;
     };
 }
