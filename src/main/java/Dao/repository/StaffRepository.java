@@ -1,6 +1,7 @@
 package Dao.repository;
 
 import Dao.entity.StaffModel;
+import dto.request.StaffRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -23,5 +24,10 @@ public class StaffRepository {
         jdbcTemplate.update("INSERT INTO staffInfo(PASSWORD, EMAIL, POSITION, PHONE, CREATE_DATE) "
                         + "VALUES (?,?,?,?,NOW())",staffModel.getPassword(), staffModel.getEmail(),
                 staffModel.getPosition(),staffModel.getPhone());
+    }
+
+    public void deleteStaff(int staffId){
+        System.out.println(staffId);
+        jdbcTemplate.update("delete from staffInfo where id = ?" , staffId );
     }
 }

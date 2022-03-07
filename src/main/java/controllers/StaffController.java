@@ -26,4 +26,11 @@ public class StaffController {
 
         return null;
     };
+
+    @DeleteMapping("/delete")
+    public String deleteStaff(@RequestBody StaffRequest staffRequest){
+        staffService.deleteStaff(staffRequest);
+
+        return "delete success";
+    }
 }

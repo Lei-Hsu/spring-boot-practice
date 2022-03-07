@@ -38,4 +38,11 @@ public class StaffService {
 
         staffRepository.addStaff((staffModel));
     }
+
+    public void deleteStaff(@RequestBody StaffRequest staffId){
+
+        staffModel = new StaffModel();
+        staffModel.setId(staffId.getId());
+        staffRepository.deleteStaff(staffModel.getId());
+    }
 }
